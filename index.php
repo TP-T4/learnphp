@@ -13,4 +13,11 @@
     /**
      * This is a comment
      */
+    $test = 10 + 10;
+    $test = 10 - 5;
+    $test = 10 * 5;
+    $test = 10 / 2;
+    $test = 10 % 3;
+    $test = 10 ** 2;
+    var_dump($test);
 ?>
