@@ -6,4 +6,11 @@
     $name = 'tauri';
     $age = 18;
     $test = $name . ' is ' . $age . ' years old';
+    $test = <<<END
+    $name is $age years old.
+    a
+     b
+      c
+END;
+var_dump($test);
 ?>
