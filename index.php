@@ -1,16 +1,13 @@
 <?php
-    $test = 'yolo';
-    $test = 'yolo' . 'life';
-    $test = $test . 'thug';
-    $test = $test .= 'life';
-    $name = 'tauri';
-    $age = 18;
-    $test = $name . ' is ' . $age . ' years old';
-    $test = <<<END
-    $name is $age years old.
-    a
-     b
-      c
-END;
+$test = true;
+$test = false;
+$test = true && false;
+$test = true || false;
+$test = !true;
+$test = (true && false) || false || (!false && true);
+$test = false || false || true;
+$test = true xor false;
+$test = true and false;
+$test = true or false;
 var_dump($test);
 ?>
