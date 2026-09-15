@@ -4,8 +4,8 @@ class box {
     use hascolor;
     use hassmell;
     
-    public $isopen;
-    protected $hasbeenopened;
+    public bool $isopen;
+    private bool $hasbeenopened;
 
     public function __construct( public $width, public $height, public $depth) {
         
@@ -17,6 +17,14 @@ class box {
         $this->hasbeenopened = true;
     }
 }
+
+    public function setWidth(int $width) {
+        if ($width < 0) {
+            throw new Exception("Width must be a positive number");
+        }
+        $this->width = $width;
+    }
+
 
     public function tostring() {
         return "Box dimensions: {$this->width} x {$this->height} x {$this->depth}";
