@@ -1,62 +1,49 @@
 <?php
-$num = 10;
-if($num > 10) {
-    var_dump('Bigger');
-} 
 
-if($num > 10) {
-    var_dump('Bigger');
-} else {
-    var_dump('Smaller');
+class box {
+    use hascolor;
+    use hassmell;
+    
+    public $isopen;
+    protected $hasbeenopened;
+
+    public function __construct( public $width, public $height, public $depth) {
+        
+        var_dump('Object created');
+    }
+
+    public function open() {
+        $this->isopen = true;
+        $this->hasbeenopened = true;
+    }
 }
 
-if($num > 10) {
-    var_dump('Bigger');
-} else if($num < 10) {
-    var_dump('Smaller');
-} else {
-    var_dump('Equal');
+    public function tostring() {
+        return "Box dimensions: {$this->width} x {$this->height} x {$this->depth}";
+    }
+
+class metalbox extends box {
+    public $weightperunit;
+
+    public function mass() {
+        return $this->weightperunit * $this->width * $this->height * $this->depth;
+    }
 }
 
-$day = (int) date('w');
-$day = intval(date('w'));
-var_dump($day);
-if($day === 0) {
-    var_dump('Sunday');
-} elseif($day === 1) {
-    var_dump('Monday');
-} elseif($day === 2) {
-    var_dump('Tuesday');
-} elseif($day === 3) {
-    var_dump('Wednesday');
-} elseif($day === 4) {
-    var_dump('Thursday');
-} elseif($day === 5 || $day === 6) {
-    var_dump('Partyday');
-}else {
-    var_dump('Weirdday');
+trait hascolor {
+    public $color;
+    public function setcolor($color) {
+       return $this->color = $color;
+    }
 }
 
-switch($day) {
-    case 0:
-        var_dump('Sunday');
-        break;
-    case 1:
-        var_dump('Monday');
-        break;
-    case 2:
-        var_dump('Tuesday');
-        break;
-    case 3:
-        var_dump('Wednesday');
-        break;
-    case 4:
-        var_dump('Thursday');
-        break;
-    case 5:
-    case 6:
-        var_dump('Partyday');
-        break;
-    default:
-        var_dump('Weirdday');
+trait hassmell {
+    public $smell;
+    public function setsmell($smell) {
+        return $this->smell = $smell;
+    }
 }
+
+$metal1 = new metalbox(10, 20, 30);
+$metal1->weightperunit = 2;
+var_dump($metal1->mass());
