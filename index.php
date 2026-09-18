@@ -1,59 +1,51 @@
 <?php
 
-class box {
-    public $width;
-    public $height;
-    public $depth;
-    public $isopen = false;
-    public $hasbeenopened = false;
 
-    public function __construct($width, $height, $depth) {
-        $this->width = $width;
-        $this->height = $height;
-        $this->depth = $depth;
-    }
-
-    public function volume() {
-        return $this->width * $this->height * $this->depth;
-    }
-
-    public function open() {
-        if (!$this->isopen) {
-            $this->isopen = true;
-            $this->hasbeenopened = true;
+    class Task {
+        public function job($logger) {
+            for ($i = 0; $i < 10; $i++) {
+                $logger->log("Task iteration: " . $i);
+            }
         }
     }
-}
 
-box1 = new box();
-box1->width = 10;
-box1->height = 5;
-box1->depth = 2;
-box1->open();
+    class consoleLogger {
+        public function log($message) {
+            echo $message . PHP_EOL;
+        }
+    }
 
-box2 = new box();
-box2->width = 3;
-box2->height = 4;
-box2->depth = 6;
-box2->$isopen = false;
 
-$num1 = 1;
-$num2 = $num1;
-$num1 = 2;
+    class Nothinglogger implements Logger, Writer {
+        public function log($message) {
+            // Do nothing
+        }
+    }
 
-$box1 = new box();
-$box1->width = 1;
-$box2 = clone $box1;
-$box1->width = 2;
-var_dump($box1, $box2); // Outputs: 2
+    interface Logger {
+        public function log($message);
+    }
 
-$numbers = [1, 2, 3, 4, 5];
+    interface Writer {
+        public function write($message);
+    }
 
-for($i=0; $i < count($numbers); $i++) {
-   $n = $numbers[$i];
-   $n+=1;
-}
+    class FileLogger implements Logger, Writer {
+        private $file;
 
-foreach($numbers as $n) {
-   $n+=1;
-}
+        public function __construct($file) {
+            $this->file = $file;
+        }
+
+        public function log($message) {
+            $this->write($message);
+        }
+
+        public function write($message) {
+            file_put_contents($this->file, $message . PHP_EOL, FILE_APPEND);
+        }
+    }
+
+    $logger = new consoleLogger();
+    $task = new Task();
+    $task->job($logger);
