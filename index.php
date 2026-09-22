@@ -1,51 +1,24 @@
 <?php
+$name = 'Kaspar';
+?>
 
-
-    class Task {
-        public function job($logger) {
-            for ($i = 0; $i < 10; $i++) {
-                $logger->log("Task iteration: " . $i);
-            }
-        }
-    }
-
-    class consoleLogger {
-        public function log($message) {
-            echo $message . PHP_EOL;
-        }
-    }
-
-
-    class Nothinglogger implements Logger, Writer {
-        public function log($message) {
-            // Do nothing
-        }
-    }
-
-    interface Logger {
-        public function log($message);
-    }
-
-    interface Writer {
-        public function write($message);
-    }
-
-    class FileLogger implements Logger, Writer {
-        private $file;
-
-        public function __construct($file) {
-            $this->file = $file;
-        }
-
-        public function log($message) {
-            $this->write($message);
-        }
-
-        public function write($message) {
-            file_put_contents($this->file, $message . PHP_EOL, FILE_APPEND);
-        }
-    }
-
-    $logger = new consoleLogger();
-    $task = new Task();
-    $task->job($logger);
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Hello <?=$name?>!</h1>
+    <ul>
+        <?php for($i=0;$i<10;$i++): ?>
+            <?php if($i%2 === 0): ?>
+                <li style="color:green"><?= $i ?></li>
+            <?php else: ?>
+                 <li style="color:red"><?= $i ?></li>
+            <?php endif ?>
+        <?php endfor ?>
+    </ul>
+</body>
+</html>
