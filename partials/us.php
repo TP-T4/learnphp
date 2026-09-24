@@ -1,41 +1,38 @@
 <?php
-$title = 'World';
+$title = 'U.S';
 $posts = [
   [
-    'title' => 'Some World title 1',
+    'title' => 'Some U.S title 1',
     'date' => 'January 1, 2021',
     'author' => 'Pets',
-    'body' => 'Some World content 1',
+    'body' => 'Some U.S content 1',
   ],
   [
-    'title' => 'Some World title 2',
+    'title' => 'Some U.S title 2',
     'date' => 'January 3, 2021',
     'author' => 'Manivald',
-    'body' => 'Some World content 2',
+    'body' => 'Some U.S content 2',
   ],
   [
-    'title' => 'Some World title 3',
+    'title' => 'Some U.S title 3',
     'date' => 'January 5, 2021',
     'author' => 'Jorss',
-    'body' => 'Some World content 3',
+    'body' => 'Some U.S content 3',
   ],
   [
-    'title' => 'Some World title 4',
+    'title' => 'Some U.S title 4',
     'date' => 'January 7, 2021',
     'author' => 'Heli Kopter',
-    'body' => 'Some World content 4',
+    'body' => 'Some U.S content 4',
   ],
 ];
 
 
 ?>
 
-
 <?php include __DIR__ . '/partials/header.php'; ?>
 
   <main class="container"> 
-    <?php include __DIR__ . '/partials/hero.php'; ?>
-    <?php include __DIR__ . '/partials/featured.php'; ?>
 
       <div class="row g-5">
         <div class="col-md-8">
